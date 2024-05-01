@@ -1,0 +1,139 @@
+﻿@using EntityLayer.Concrete
+@model Drug
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminUserFormLayout.cshtml";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+                    <h1>Drug Details</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Drug Details</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+              <h3 class="card-title">Drug Details</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">NDC</label>
+                        <input
+                            asp-for="NDC"
+                            value="@Model.NDC"
+                            type="text"
+                            class="form-control"
+                            disabled>
+                    </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Drug Name</label>
+                     <input
+                         asp-for="drugName"
+                         value="@Model.drugName"
+                         type="text" 
+                         class="form-control" 
+                         placeholder="Drug Name">
+                  </div>
+                <!-- select -->
+                <div class="form-group">
+                    <label>Select Drug Type</label>
+                    <select class="custom-select">
+                        <option>Normal</option>
+                        <option>Red</option>
+                        <option>Green</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Supplier ID</label>
+                    <input 
+                        asp-for="supplierFK"
+                        value="@Model.supplierFK"
+                        type="text"
+                        class="form-control"
+                        disabled>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Dosage</label>
+                    <input 
+                        asp-for="dosage"
+                        value="@Model.dosage"
+                        type="text"
+                        class="form-control"
+                        placeholder="Dosage">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Description</label>
+                    <input 
+                        asp-for="description"
+                        value="@Model.description"
+                        type="text"
+                        class="form-control"
+                        placeholder="Description">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Price</label>
+                    <input 
+                        asp-for="price"
+                        value="@Model.price"
+                        type="text"
+                        class="form-control"
+                        placeholder="Price">
+                </div>
+                  <div class="form-group">
+                    <label for="exampleInputFile">Drug Image</label>
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="exampleInputFile">
+                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                      </div>
+                      <div class="input-group-append">
+                        <span class="input-group-text">Upload</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer bg-white">
+                <button type="submit" class="btn btn-primary">Update Drug Details</button>
+                <a
+                    asp-area="Admin"
+                    asp-controller="DrugDetails"
+                    asp-action="Delete"
+                    asp-route-id="@Model.NDC"
+                    class="btn btn-danger float-right">Delete Drug</a>
+            </div>
+              </form>
+            </div>
+            <!-- /.card -->
+          </div>
+          <!--/.col (left) -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+

@@ -1,0 +1,89 @@
+﻿@using EntityLayer.Concrete
+@model List<Supplier>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminUserTableLayout.cshtml";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Supplier List</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Supplier List</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Supplier ID</th>
+                                        <th>Supplier Name</th>
+                                        <th>Supplier Phone Number</th>
+                                        <th>Supplier Email</th>
+                                        <th>Created at</th>
+                                        <th>More Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.id</td>
+                                            <td>@item.name</td>
+                                            <td>@item.phoneNumber</td>
+                                            <td>@item.email</td>
+                                            <td>@item.created_at</td>
+                                            <td>
+                                                @* asp tagi ile id cekme gelicek *@
+                                                <a asp-area="Admin"
+                                                asp-controller="SupplierDetails"
+                                                asp-action="Index"
+                                                asp-route-id="@item.id"
+                                                class="btn btn-info">Details</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Supplier ID</th>
+                                        <th>Supplier Name</th>
+                                        <th>Supplier Phone Number</th>
+                                        <th>Supplier Email</th>
+                                        <th>Created at</th>
+                                        <th>More Details</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+

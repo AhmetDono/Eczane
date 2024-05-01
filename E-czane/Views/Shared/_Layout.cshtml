@@ -1,0 +1,9 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+@await Html.PartialAsync("~/Views/LayoutPartial/_HeadPartial.cshtml")
+@await Html.PartialAsync("~/Views/LayoutPartial/_NavBarPartial.cshtml")
+@RenderBody()
+@await Html.PartialAsync("~/Views/LayoutPartial/_FooterPartial.cshtml")
+@await Html.PartialAsync("~/Views/LayoutPartial/_ScriptPartial.cshtml")
+</html>

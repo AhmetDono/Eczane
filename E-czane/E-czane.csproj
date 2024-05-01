@@ -1,0 +1,61 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>E_czane</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\User\Data\" />
+    <Folder Include="Areas\User\Models\" />
+    <Folder Include="ViewComponents\" />
+    <Folder Include="Views\Shared\Components\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\AdminLTE-3.2.0\.github\codeql\codeql-config.yml" />
+    <None Include="wwwroot\AdminLTE-3.2.0\.github\CONTRIBUTING.md" />
+    <None Include="wwwroot\AdminLTE-3.2.0\.github\dependabot.yml" />
+    <None Include="wwwroot\AdminLTE-3.2.0\.github\ISSUE_TEMPLATE\bug-report-for-adminlte-v3.1-x.md" />
+    <None Include="wwwroot\AdminLTE-3.2.0\.github\ISSUE_TEMPLATE\feature-request-for-adminlte-v4-x.md" />
+    <None Include="wwwroot\AdminLTE-3.2.0\.github\workflows\ci.yml" />
+    <None Include="wwwroot\AdminLTE-3.2.0\.github\workflows\codeql.yml" />
+    <None Include="wwwroot\AdminLTE-3.2.0\.github\workflows\docs.yml" />
+    <None Include="wwwroot\AdminLTE-3.2.0\.github\workflows\lint.yml" />
+    <None Include="wwwroot\login-form-01\.DS_Store" />
+    <None Include="wwwroot\login-form-01\css\.DS_Store" />
+    <None Include="wwwroot\login-form-01\fonts\.DS_Store" />
+    <None Include="wwwroot\login-form-01\images\.DS_Store" />
+    <None Include="wwwroot\login-form-01\scss\.DS_Store" />
+    <None Include="wwwroot\pharma-master\.DS_Store" />
+    <None Include="wwwroot\pharma-master\images\.DS_Store" />
+    <None Include="wwwroot\pharma-master\scss\.DS_Store" />
+    <None Include="wwwroot\pharma-master\scss\bootstrap\.DS_Store" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="jquery.datatables" Version="1.10.15" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.29" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.29">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.29" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.29">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj" />
+    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj" />
+    <ProjectReference Include="..\EntityLayer\EntityLayer.csproj" />
+  </ItemGroup>
+
+</Project>

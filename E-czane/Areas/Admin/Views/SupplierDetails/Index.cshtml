@@ -1,0 +1,96 @@
+﻿@using EntityLayer.Concrete
+@model Supplier
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminUserFormLayout.cshtml";
+}
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Supplier Details</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Supplier Details</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Supplier Details</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <form>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">ID</label>
+                                    <input 
+                                        asp-for="name"
+                                        value="@Model.id"
+                                        type="text"
+                                        class="form-control"
+                                        disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Supplier Name</label>
+                                    <input 
+                                        asp-for="name"
+                                        value="@Model.name"
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="Supplier Name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Phone Number</label>
+                                    <input 
+                                        asp-for="phoneNumber"
+                                        value="@Model.phoneNumber"
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="Phone Number">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Email</label>
+                                    <input 
+                                        asp-for="email"
+                                        value="@Model.email"
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="Email">
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+
+                            <div class="card-footer bg-white">
+                                <button type="submit" class="btn btn-primary">Update Supplier Details</button>
+                                <button type="submit" class="btn btn-danger float-right">Delete Supplier</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!--/.col (left) -->
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+
