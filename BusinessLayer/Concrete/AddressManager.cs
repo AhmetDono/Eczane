@@ -33,6 +33,11 @@ namespace BusinessLayer.Concrete
             return _addressDal.GetById(id);
         }
 
+        public List<Address> TGetLastNItems(int count)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Address> TGetList()
         {
             return _addressDal.GetList();

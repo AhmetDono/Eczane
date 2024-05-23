@@ -33,6 +33,11 @@ namespace BusinessLayer.Concrete
             return _appUserDal.GetById(id);
         }
 
+        public List<AppUser> TGetLastNItems(int count)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<AppUser> TGetList()
         {
             return _appUserDal.GetList();

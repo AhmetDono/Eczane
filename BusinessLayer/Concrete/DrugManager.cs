@@ -33,6 +33,11 @@ namespace BusinessLayer.Concrete
             return _drugDal.GetById(id);
         }
 
+        public List<Drug> TGetLastNItems(int count)
+        {
+            return _drugDal.GetLastNItems(count);
+        }
+
         public List<Drug> TGetList()
         {
             return _drugDal.GetList();

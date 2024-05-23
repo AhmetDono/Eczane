@@ -15,5 +15,6 @@ namespace DataAccessLayer.Abstract
         T GetById(int id);
         List<T> GetList();
         List<T> GetListByFilter(Expression<Func<T, bool>> filter);
+        List<T> GetLastNItems(int count);
     }
 }

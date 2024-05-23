@@ -33,6 +33,11 @@ namespace BusinessLayer.Concrete
             return _transactionDetailDal.GetById(id);
         }
 
+        public List<TransactionDetail> TGetLastNItems(int count)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<TransactionDetail> TGetList()
         {
             return _transactionDetailDal.GetList();

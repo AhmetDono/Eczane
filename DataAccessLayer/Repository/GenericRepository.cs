@@ -36,6 +36,15 @@ namespace DataAccessLayer.Repository
             return c.Set<T>().Where(filter).ToList();
         }
 
+        public List<T> GetLastNItems(int count)
+        {
+            using var c = new Context();
+            List<T> allItems = c.Set<T>().ToList();
+            int startIndex = Math.Max(0, allItems.Count - count);
+            List<T> lastNItems = allItems.Skip(startIndex).ToList();
+            return lastNItems;
+        }
+
         public void Insert(T t)
         {
             using var c = new Context();
@@ -49,5 +58,7 @@ namespace DataAccessLayer.Repository
             c.Update(t);
             c.SaveChanges();
         }
+
+
     }
 }

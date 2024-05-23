@@ -33,6 +33,11 @@ namespace BusinessLayer.Concrete
             return _menuDal.GetById(id);
         }
 
+        public List<Menu> TGetLastNItems(int count)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Menu> TGetList()
         {
             return _menuDal.GetList();

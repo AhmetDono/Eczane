@@ -1,0 +1,38 @@
+﻿@using EntityLayer.Concrete
+@model List<Drug>
+<div class="site-section">
+    <div class="container">
+        <div class="row">
+            <div class="title-section text-center col-12">
+                <h2 class="text-uppercase">Popular Products</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-sm-6 col-lg-4 text-center item mb-4">
+                    <span class="tag">Sale</span>
+                    <a asp-controller="ShopSingle"
+                       asp-action="Index"
+                       asp-route-id="@item.NDC">
+                       <img src="@item.drugImg" alt="Image">
+                   </a>
+                    <h3 class="text-dark">
+                        <a asp-controller="ShopSingle"
+                           asp-action="Index"
+                           asp-route-id="@item.NDC">
+                           @item.drugName
+                           </a>
+                    </h3>
+                    <p class="price">$@item.price</p>
+                </div>
+            }
+        </div>
+        <div class="row mt-5">
+            <div class="col-12 text-center">
+                <a href="/Shop/Index" class="btn btn-primary px-4 py-3">View All Products</a>
+            </div>
+        </div>
+    </div>
+</div>

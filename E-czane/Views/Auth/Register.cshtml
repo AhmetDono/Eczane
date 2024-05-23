@@ -1,4 +1,4 @@
-﻿
+﻿@model RegisterViewModel
 @{
     ViewData["Title"] = "Register";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,37 +12,47 @@
                 <div class="col-md-7 bg-white pb-5 pt-5 pr-5 pl-5 bg-opacity-10">
                     <h3 class="text-black">Login to <strong class="text-black">E-CZANE</strong></h3>
                     <p class="mb-4 text-black">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p>
-                    <form action="#" method="post">
+                    <form asp-controller="Auth" asp-action="Register" method="post">
+
                         <div class="form-group first">
-                            <label class="text-black" for="SSN">SSN</label>
-                            <input type="text" class="form-control text-black" placeholder="your SSN" id="SSN">
+                            <label class="text-black" for="UserName">User Name</label>
+                            <input
+                                asp-for="UserName"
+                                   type="text"
+                                   class="form-control text-black"
+                                   placeholder="your user name">
                         </div>
                         <div class="form-group first">
-                            <label class="text-black" for="username">Username</label>
-                            <input type="text" class="form-control text-black" placeholder="your-email@gmail.com" id="username">
+                            <label class="text-black" for="Email">Email</label>
+                            <input
+                                asp-for="Email"
+                                type="email"
+                                class="form-control text-black"
+                                placeholder="your-email@gmail.com"
+                                >
                         </div>
                         <div class="form-group last mb-3">
-                            <label class="text-black" for="password">Password</label>
-                            <input type="password" class="form-control text-black" placeholder="Your Password" id="password">
+                            <label class="text-black" for="Password">Password</label>
+                            <input
+                                asp-for="Password"
+                                type="password"
+                                class="form-control text-black"
+                                placeholder="Your Password"
+                            >
                         </div>
                         <div class="form-group last mb-3">
                             <label class="text-black" for="passwordCheck">Password Check</label>
-                            <input type="password" class="form-control text-black" placeholder="Your Password Again" id="passwordCheck">
+                            <input
+                                asp-for="ConfirmPassword"
+                                type="password"
+                                class="form-control text-black"
+                                placeholder="Your Password Again"
+                                >
                         </div>
                         <div class="d-flex mb-5 align-items-center">
-                            <span class="ml-auto"><a href="/Auth/login" class="forgot-pass text-black">Do u have an acoount?</a></span>
+                            <span class="ml-auto"><a asp-controller="Auth" asp-action="Login" class="forgot-pass text-black">Do u have an acoount?</a></span>
                         </div>
-                        <div class="d-flex mb-5 align-items-center">
-                            <label class="control control--checkbox mb-0">
-                                <span class="caption text-black ">Remember me</span>
-                                <input type="checkbox" checked="checked" />
-                                <div class="control__indicator"></div>
-                            </label>
-                            <span class="ml-auto"><a href="#" class="text-black">Forgot Password</a></span>
-                        </div>
-
                         <input type="submit" value="Log In" class="btn btn-block btn-primary">
-
                     </form>
                 </div>
             </div>
