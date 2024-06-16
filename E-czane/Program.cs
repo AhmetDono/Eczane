@@ -1,4 +1,6 @@
+using BusinessLayer.Concrete;
 using DataAccessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
 using E_czane.Models;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -14,9 +16,11 @@ builder.Services.AddIdentity<AppUser, AppRole>(x =>
 {
     x.Password.RequireUppercase = false;
     x.Password.RequireNonAlphanumeric = false;
-}).AddEntityFrameworkStores<Context>();
+}).AddEntityFrameworkStores<Context>().AddDefaultTokenProviders();
+
 
 builder.Services.AddScoped<RoleManager<AppRole>>();
+builder.Services.AddScoped<UserManager<AppUser>>();
 
 builder.Services.AddAuthentication(
     CookieAuthenticationDefaults.AuthenticationScheme)

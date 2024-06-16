@@ -10,7 +10,7 @@ using System.Security.Claims;
 
 namespace E_czane.Areas.User.Controllers
 {
-    [Authorize] //gecici
+    [Authorize]
     [Area("User")]
     public class Profile : Controller
     {

@@ -1,4 +1,5 @@
-﻿
+﻿@using EntityLayer.Concrete
+@model List<AppUser>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminUserTableLayout.cshtml";
@@ -34,38 +35,48 @@
                                 <thead>
                                     <tr>
                                         <th>User SSN</th>
-                                        <th>User Name</th>
-                                        <th>User Surname</th>
                                         <th>User Email</th>
-                                        <th>User Phone Number</th>
-                                        <th>User Address</th>
                                         <th>Created at</th>
+                                        <th>Edit Role</th>
                                         <th>More Details</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>197270</td>
-                                        <td>Ahmet</td>
-                                        <td>Sacmali</td>
-                                        <td>ahmet@gmil.com</td>
-                                        <td>555555555</td>
-                                        <td>Mugla</td>
-                                        <td>11.01.2024</td>
-                                        <td> @* asp tagi ile id cekme gelicek *@
-                                            <a asp-area="Admin" asp-controller="UserDetails" asp-action="Index" class="btn btn-info">Details</a>
-                                        </td>
-                                    </tr>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.Id</td>
+                                            <td>@item.Email</td>
+                                            <td>11.01.2024</td>
+                                            <td>
+                                                <a
+                                                    asp-area="Admin"
+                                                    asp-controller="Role"
+                                                    asp-action="AssignRole"
+                                                   asp-route-id="@item.Id"
+                                                   class="btn btn-warning"
+                                                >Role
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a
+                                                    asp-area="Admin"
+                                                    asp-controller="UserDetails"
+                                                    asp-action="Index"
+                                                    asp-route-id="@item.Id"
+                                                    class="btn btn-info"
+                                                >Details
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <th>User SSN</th>
-                                        <th>User Name</th>
-                                        <th>User Surname</th>
                                         <th>User Email</th>
-                                        <th>User Phone Number</th>
-                                        <th>User Address</th>
                                         <th>Created at</th>
+                                        <th>Edit Role</th>
                                         <th>More Details</th>
                                     </tr>
                                 </tfoot>
