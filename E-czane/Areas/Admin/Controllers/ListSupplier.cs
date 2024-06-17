@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
+using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,11 +10,27 @@ namespace E_czane.Areas.Admin.Controllers
     [Authorize(Roles = "Admin")]
     public class ListSupplier : Controller
     {
-        SupplierManager supplierManager = new SupplierManager(new EfSupplierDal());
+        SupplierManager _supplierManager = new SupplierManager(new EfSupplierDal());
+
+        //Supplier List
         public IActionResult Index()
         {
-            var values = supplierManager.TGetList();
+            var values = _supplierManager.TGetList();
             return View(values);
+        }
+
+        //Create Supplier
+        [HttpGet]
+        public IActionResult CreateSupplier()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateSupplier(Supplier supplier)
+        {
+           _supplierManager.Tadd(supplier);
+            return RedirectToAction("Index","ListSupplier");
         }
     }
 }

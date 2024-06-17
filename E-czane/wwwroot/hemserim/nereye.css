@@ -1,0 +1,22 @@
+﻿/* Animasyon tanımı */
+@keyframes slideIn {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Fotoğraf stil ve animasyon özellikleri */
+.access-denied-image {
+    width: 100%; /* Sayfa genişliği kadar resim genişliği */
+    max-width: 600px; /* Maksimum 600px genişlik */
+    display: block; /* Resim blok element olarak görüntülenir */
+    margin: auto; /* Ortalanmış hale getirir */
+    margin-top: 50px; /* Üst boşluk */
+    animation: slideIn 2s ease; /* Animasyon tanımı ve süresi */
+}
+

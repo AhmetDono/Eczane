@@ -5,6 +5,8 @@ using E_czane.Models;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.Options;
 using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,7 +28,8 @@ builder.Services.AddAuthentication(
     CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(option =>
     {
-        option.LoginPath = "/Auth/Login";
+        option.LoginPath = "/Account/AccessDenied";
+        option.AccessDeniedPath = "/AccessDenied/Index";
         option.ExpireTimeSpan = TimeSpan.FromMinutes(15);
         option.SlidingExpiration = true;
     });
@@ -35,11 +38,6 @@ builder.Services.AddAuthentication(
     {
         options.LoginPath = "/Auth/Login";
     });
-
-//builder.Services.PostConfigure<CookieAuthenticationOptions>(IdentityConstants.ApplicationScheme, options =>
-//{
-//    options.LoginPath = "/Login/Index";
-//});
 
 
 var app = builder.Build();

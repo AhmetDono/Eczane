@@ -1,4 +1,7 @@
-﻿
+﻿@using Microsoft.AspNetCore.Identity
+@using EntityLayer.Concrete
+@inject SignInManager<AppUser> signInManager;
+
 @*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -30,71 +33,74 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
-                <li class="nav-header">Admin</li>
-                <li class="nav-item">
-                    <a href="/Admin/Dashboard/Index" class="nav-link">
-                        <i class="fa-solid fa-lock"></i>
-                        <p>
-                            Admin Dashboard
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/Admin/Profile/Index" class="nav-link">
-                        <i class="fa-solid fa-user"></i>
-                        <p>
-                            Admin Profile
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/Admin/ListDrug/Index" class="nav-link">
-                        <i class="fa-solid fa-prescription-bottle-medical"></i>
-                        <p>
-                            Drug List
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/Admin/ListStock/Index" class="nav-link">
-                        <i class="fa-solid fa-arrow-trend-up"></i>
-                        <p>
-                            Stock list
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/Admin/ListSupplier/Index" class="nav-link">
-                        <i class="fa-solid fa-truck-field"></i>
-                        <p>
-                           Supplier List
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/Admin/ListTransaction/Index" class="nav-link">
-                        <i class="fa-solid fa-money-bill"></i>
-                        <p>
-                            Transction List
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/Admin/ListUser/Index" class="nav-link">
-                        <i class="fa-solid fa-user"></i>
-                        <p>
-                            User List
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/Admin/Role/Index" class="nav-link">
-                        <i class="fa-solid fa-lock"></i>
-                        <p>
-                            Role
-                        </p>
-                    </a>
-                </li>
+                @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                {
+                    <li class="nav-header">Admin</li>
+                    <li class="nav-item">
+                        <a href="/Admin/Dashboard/Index" class="nav-link">
+                            <i class="fa-solid fa-lock"></i>
+                            <p>
+                                Admin Dashboard
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/Admin/Profile/Index" class="nav-link">
+                            <i class="fa-solid fa-user"></i>
+                            <p>
+                                Admin Profile
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/Admin/ListDrug/Index" class="nav-link">
+                            <i class="fa-solid fa-prescription-bottle-medical"></i>
+                            <p>
+                                Drug List
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/Admin/ListStock/Index" class="nav-link">
+                            <i class="fa-solid fa-arrow-trend-up"></i>
+                            <p>
+                                Stock list
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/Admin/ListSupplier/Index" class="nav-link">
+                            <i class="fa-solid fa-truck-field"></i>
+                            <p>
+                                Supplier List
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/Admin/ListTransaction/Index" class="nav-link">
+                            <i class="fa-solid fa-money-bill"></i>
+                            <p>
+                                Transction List
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/Admin/ListUser/Index" class="nav-link">
+                            <i class="fa-solid fa-user"></i>
+                            <p>
+                                User List
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/Admin/Role/Index" class="nav-link">
+                            <i class="fa-solid fa-lock"></i>
+                            <p>
+                                Role
+                            </p>
+                        </a>
+                    </li>
+                }
                 <li class="nav-header">User</li>
                 <li class="nav-item">
                     <a href="/User/Profile/Index" class="nav-link">

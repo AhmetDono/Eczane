@@ -1,0 +1,44 @@
+﻿@using EntityLayer.Concrete
+@model Supplier
+@{
+    ViewData["Title"] = "CreateSupplier";
+    Layout = "~/Views/Shared/_AdminUserFormLayout.cshtml";
+}
+
+<div class="content-wrapper">
+    <form asp-area="admin" asp-controller="ListSupplier" asp-action="CreateSupplier" method="post"  class="form-horizontal ml-5 mr-5 pt-5">
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                <input
+                       asp-for="name"
+                       type="text"
+                       class="form-control"
+                       placeholder="Name">
+                <label for="inputName" class="col-sm-2 col-form-label">Email</label>
+                <input 
+                       asp-for="email"
+                       type="email"
+                       class="form-control"
+                       placeholder="Email">
+                <label for="inputName" class="col-sm-2 col-form-label">Phone Number</label>
+                <input 
+                       asp-for="phoneNumber"
+                       type="text"
+                       class="form-control"
+                       placeholder="PhoneNumber">
+                 <input
+                     asp-for="created_at"
+                     value="@DateTime.Now"
+                     hidden
+                     />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="offset-sm-2 col-sm-10">
+                <button type="submit" class="btn btn-info  float-right">Add Supplier</button>
+            </div>
+        </div>
+    </form>
+</div>
+

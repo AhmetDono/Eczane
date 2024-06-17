@@ -1,5 +1,5 @@
 ﻿@using EntityLayer.Concrete
-@model Supplier
+@model SupplierEditViewModel
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminUserFormLayout.cshtml";
@@ -37,22 +37,22 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form>
+                        <form asp-area="Admin"
+                              asp-controller="SupplierDetails"
+                              asp-action="UpdateSupplier" 
+                              method="post">
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">ID</label>
                                     <input 
-                                        asp-for="name"
-                                        value="@Model.id"
-                                        type="text"
+                                        asp-for="supplierID"
                                         class="form-control"
-                                        disabled>
+                                        hidden>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Supplier Name</label>
-                                    <input 
-                                        asp-for="name"
-                                        value="@Model.name"
+                                    <input
+                                        asp-for="supplierName"
                                         type="text"
                                         class="form-control"
                                         placeholder="Supplier Name">
@@ -61,7 +61,6 @@
                                     <label for="exampleInputEmail1">Phone Number</label>
                                     <input 
                                         asp-for="phoneNumber"
-                                        value="@Model.phoneNumber"
                                         type="text"
                                         class="form-control"
                                         placeholder="Phone Number">
@@ -70,7 +69,6 @@
                                     <label for="exampleInputEmail1">Email</label>
                                     <input 
                                         asp-for="email"
-                                        value="@Model.email"
                                         type="text"
                                         class="form-control"
                                         placeholder="Email">
@@ -79,8 +77,16 @@
                             <!-- /.card-body -->
 
                             <div class="card-footer bg-white">
-                                <button type="submit" class="btn btn-primary">Update Supplier Details</button>
-                                <button type="submit" class="btn btn-danger float-right">Delete Supplier</button>
+                                <button type="submit"class="btn btn-primary">Update Supplier Details</button>
+                                <a
+                                    asp-area="Admin"
+                                    asp-controller="SupplierDetails"
+                                    asp-action="DeleteSupplier"
+                                    asp-route-id="@Model.supplierID"
+                                    type="submit"
+                                    class="btn btn-danger float-right">
+                                    Delete Supplier
+                                </a>
                             </div>
                         </form>
                     </div>

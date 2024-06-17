@@ -43,9 +43,8 @@ namespace E_czane.Controllers
                         var claims = new List<Claim>
                 {
                     //new Claim(ClaimTypes.Name, modelLogin.UserName),
-                    new Claim(ClaimTypes.Email,user.Email)
-                    // İhtiyaç duyulursa diğer claim'leri de ekleyebilirsiniz
-                };
+                    new Claim(ClaimTypes.Email,user.Email),
+                    };
 
                         var claimsIdentity = new ClaimsIdentity(
                             claims, CookieAuthenticationDefaults.AuthenticationScheme);

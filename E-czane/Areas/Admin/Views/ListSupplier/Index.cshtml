@@ -29,6 +29,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
+                        <a asp-area="Admin"
+                           asp-controller="ListSupplier"
+                           asp-action="CreateSupplier"
+                           class="btn btn-success float-right">
+                            Add New Supplier
+                        </a>
                         <!-- /.card-header -->
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
@@ -52,7 +58,6 @@
                                             <td>@item.email</td>
                                             <td>@item.created_at</td>
                                             <td>
-                                                @* asp tagi ile id cekme gelicek *@
                                                 <a asp-area="Admin"
                                                 asp-controller="SupplierDetails"
                                                 asp-action="Index"
