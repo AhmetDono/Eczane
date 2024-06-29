@@ -9,5 +9,6 @@ namespace DataAccessLayer.Abstract
 {
     public interface IDrugDal : IGenericDal<Drug>
     {
+        List<Drug> GetListWithSupplier();
     }
 }

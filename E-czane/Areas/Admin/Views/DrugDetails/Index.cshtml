@@ -1,5 +1,5 @@
 ﻿@using EntityLayer.Concrete
-@model Drug
+@model EditDrugViewModel
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminUserFormLayout.cshtml";
@@ -36,16 +36,21 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form>
+              <form 
+                  asp-area="Admin"
+                  asp-controller="DrugDetails"
+                  asp-action="UpdateDrug"
+                  enctype="multipart/form-data"
+                  method="post"  >
                 <div class="card-body">
                     <div class="form-group">
                         <label for="exampleInputEmail1">NDC</label>
                         <input
-                            asp-for="NDC"
-                            value="@Model.NDC"
+                            asp-for="drugID"
+                            value="@Model.drugID"
                             type="text"
                             class="form-control"
-                            disabled>
+                            hidden>
                     </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Drug Name</label>
@@ -59,17 +64,17 @@
                 <!-- select -->
                 <div class="form-group">
                     <label>Select Drug Type</label>
-                    <select class="custom-select">
-                        <option>Normal</option>
-                        <option>Red</option>
-                        <option>Green</option>
+                    <select asp-for="drugType" class="form-control">
+                        <option value="Normal">Normal</option>
+                        <option value="Green">Green</option>
+                        <option value="Red">Red</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Supplier ID</label>
                     <input 
-                        asp-for="supplierFK"
-                        value="@Model.supplierFK"
+                        asp-for="supplierID"
+                        value="@Model.supplierID"
                         type="text"
                         class="form-control"
                         disabled>
@@ -102,10 +107,15 @@
                         placeholder="Price">
                 </div>
                   <div class="form-group">
-                    <label for="exampleInputFile">Drug Image</label>
+                    <div class="form-group">
+                        <label for="currentImage">Current Drug Image</label>
+                            <div>
+                                <img src="@Url.Content("~/images/drugImages/"+Model.CurrentImagePath)" alt="Drug Image" style="max-width: 200px;" />
+                            </div>
+                    </div>
                     <div class="input-group">
                       <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile">
+                        <input asp-for="DrugImage" type="file" class="custom-file-input" id="exampleInputFile">
                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                       </div>
                       <div class="input-group-append">
@@ -122,8 +132,8 @@
                     asp-area="Admin"
                     asp-controller="DrugDetails"
                     asp-action="Delete"
-                    asp-route-id="@Model.NDC"
-                    class="btn btn-danger float-right">Delete Drug</a>
+                    asp-route-id="@Model.drugID"
+                    class="btn btn-danger white float-right">Delete Drug</a>
             </div>
               </form>
             </div>

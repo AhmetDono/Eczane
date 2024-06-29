@@ -29,6 +29,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
+                        <a asp-area="Admin"
+                           asp-controller="ListDrug"
+                           asp-action="CreateDrug"
+                           class="btn btn-success float-right">
+                            Add New Drug
+                        </a>
                         <!-- /.card-header -->
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
@@ -37,7 +43,7 @@
                                         <th>NDC</th>
                                         <th>Drug Name</th>
                                         <th>Drug Type</th>
-                                        <th>Supplier ID</th>
+                                        <th>Supplier Name</th>
                                         <th>Dosage</th>
                                         <th>Description</th>
                                         <th>Price</th>
@@ -52,7 +58,7 @@
                                             <td>@item.NDC</td>
                                             <td>@item.drugName</td>
                                             <td>@item.drugType</td>
-                                            <td>@item.supplierFK</td>
+                                            <td>@item.Supplier.name</td>
                                             <td>@item.dosage</td>
                                             <td>@item.description</td>
                                             <td>@item.price$</td>
@@ -72,7 +78,7 @@
                                         <th>NDC</th>
                                         <th>Drug Name</th>
                                         <th>Drug Type</th>
-                                        <th>Supplier ID</th>
+                                        <th>Supplier Name</th>
                                         <th>Dosage</th>
                                         <th>Description</th>
                                         <th>Price</th>

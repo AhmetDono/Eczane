@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<dynamic>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -241,21 +241,20 @@
                       <th>Total</th>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>Bioderma <strong class="mx-2">x</strong> 1</td>
-                        <td>$55.00</td>
-                      </tr>
-                      <tr>
-                        <td>Ibuprofeen <strong class="mx-2">x</strong> 1</td>
-                        <td>$45.00</td>
-                      </tr>
+                      @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Drug.drugName <strong class="mx-2">x</strong> @item.Quantity</td>
+                                <td>$@(item.Drug.price * item.Quantity)</td>
+                            </tr>
+                        }
                       <tr>
                         <td class="text-black font-weight-bold"><strong>Cart Subtotal</strong></td>
-                        <td class="text-black">$350.00</td>
+                        <td class="text-black">$@(Model.Sum(item => (int)(item.Drug.price * item.Quantity)))</td>
                       </tr>
                       <tr>
                         <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
-                        <td class="text-black font-weight-bold"><strong>$350.00</strong></td>
+                        <td class="text-black font-weight-bold"><strong>$@(Model.Sum(item => (int)(item.Drug.price * item.Quantity)))</strong></td>
                       </tr>
                     </tbody>
                   </table>

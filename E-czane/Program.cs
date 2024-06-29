@@ -20,6 +20,14 @@ builder.Services.AddIdentity<AppUser, AppRole>(x =>
     x.Password.RequireNonAlphanumeric = false;
 }).AddEntityFrameworkStores<Context>().AddDefaultTokenProviders();
 
+// Add session services
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // Session timeout süresi
+    options.Cookie.HttpOnly = true; // XSS korumasý için
+    options.Cookie.IsEssential = true; // GDPR/CCPA gereksinimleri için
+});
 
 builder.Services.AddScoped<RoleManager<AppRole>>();
 builder.Services.AddScoped<UserManager<AppUser>>();
@@ -54,6 +62,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseSession(); //session icin
 app.UseAuthentication();
 app.UseAuthorization();
 

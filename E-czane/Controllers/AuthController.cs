@@ -108,6 +108,7 @@ namespace E_czane.Controllers
 
         public async Task<IActionResult> LogOut()
         {
+            HttpContext.Session.Remove("Cart");
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }

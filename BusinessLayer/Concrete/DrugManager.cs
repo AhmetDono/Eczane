@@ -40,7 +40,7 @@ namespace BusinessLayer.Concrete
 
         public List<Drug> TGetList()
         {
-            return _drugDal.GetList();
+            return _drugDal.GetListWithSupplier();
         }
 
         public void TUpdate(Drug t)
