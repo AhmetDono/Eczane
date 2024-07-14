@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using EntityLayer.Concrete;
 
-namespace EntityLayer.Concrete
+namespace E_czane.Areas.User.Models
 {
-    public class Address
+    public class EditAddressViewModel
     {
         public int id { get; set; }
         public int UserFK { get; set; }
-        public AppUser AppUser { get; set; }
         public string FullName { get; set; }
         public string AddressLine1 { get; set; }
         public string AddressLine2 { get; set; }
@@ -19,9 +14,5 @@ namespace EntityLayer.Concrete
         public string PostalCode { get; set; }
         public string Country { get; set; }
         public string PhoneNumber { get; set; }
-
-        // Relationship
-        public ICollection<Transaction> Transactions { get; set; }
-
     }
 }

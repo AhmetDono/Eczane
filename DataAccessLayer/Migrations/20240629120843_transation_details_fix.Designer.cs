@@ -4,6 +4,7 @@ using DataAccessLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20240629120843_transation_details_fix")]
+    partial class transation_details_fix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -240,21 +242,21 @@ namespace DataAccessLayer.Migrations
                     b.Property<int>("DrugFK")
                         .HasColumnType("int");
 
-                    b.Property<int>("amount")
+                    b.Property<int>("DrugNDC")
                         .HasColumnType("int");
 
-                    b.Property<double>("buyPrice")
-                        .HasColumnType("float");
+                    b.Property<int>("amount")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("created_at")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("salePrice")
+                    b.Property<double>("price")
                         .HasColumnType("float");
 
                     b.HasKey("id");
 
-                    b.HasIndex("DrugFK");
+                    b.HasIndex("DrugNDC");
 
                     b.ToTable("Stocks");
                 });
@@ -298,6 +300,9 @@ namespace DataAccessLayer.Migrations
                     b.Property<int>("AddressId")
                         .HasColumnType("int");
 
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("created_at")
                         .HasColumnType("datetime2");
 
@@ -311,7 +316,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasIndex("AddressId");
 
-                    b.HasIndex("userFK");
+                    b.HasIndex("AppUserId");
 
                     b.ToTable("Transactions");
                 });
@@ -469,7 +474,7 @@ namespace DataAccessLayer.Migrations
                 {
                     b.HasOne("EntityLayer.Concrete.Drug", "Drug")
                         .WithMany()
-                        .HasForeignKey("DrugFK")
+                        .HasForeignKey("DrugNDC")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -481,12 +486,12 @@ namespace DataAccessLayer.Migrations
                     b.HasOne("EntityLayer.Concrete.Address", "Address")
                         .WithMany("Transactions")
                         .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("EntityLayer.Concrete.AppUser", "AppUser")
                         .WithMany()
-                        .HasForeignKey("userFK")
+                        .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

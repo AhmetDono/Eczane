@@ -1,0 +1,73 @@
+﻿@using EntityLayer.Concrete
+@model List<Address>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminUserTableLayout.cshtml";
+}
+
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content pt-4">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Addresses</h3>
+                        </div>
+                        <a
+                            asp-area="User"
+                           asp-controller="ListAddress"
+                            asp-action="CreateAddress"
+                           class="btn btn-success float-right">
+                            Add New Address
+                        </a>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Address ID</th>
+                                        <th>FullName</th>
+                                        <th>City</th>
+                                        <th>AddressLine1</th>
+                                        <th>Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.id</td>
+                                            <td>@item.FullName</td>
+                                            <td>@item.AddressLine1</td>
+                                            <td>@item.AddressLine2</td>
+                                            <td><a
+                                                asp-area="User"
+                                                asp-controller="AddressDetails"
+                                                asp-action="Index"
+                                                asp-route-id="@item.id"
+                                                class="btn btn-info">More Details</a></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer clearfix">
+                            <ul class="pagination pagination-sm m-0 float-right">
+                                <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+</div>

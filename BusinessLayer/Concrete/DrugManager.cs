@@ -1,9 +1,11 @@
 ﻿using BusinessLayer.Abstract;
 using DataAccessLayer.Abstract;
+using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -41,6 +43,11 @@ namespace BusinessLayer.Concrete
         public List<Drug> TGetList()
         {
             return _drugDal.GetListWithSupplier();
+        }
+
+        public List<Drug> TGetListByFilter(Expression<Func<Drug, bool>> filter)
+        {
+            return _drugDal.GetListByFilter(filter);
         }
 
         public void TUpdate(Drug t)

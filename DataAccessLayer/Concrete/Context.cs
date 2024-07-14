@@ -102,6 +102,113 @@ namespace DataAccessLayer.Concrete
                 .HasColumnType("datetime2");
 
             // Diğer ilişkiler ve yapılandırmalar buraya eklenebilir
+
+            // Address - Transaction relationship
+            modelBuilder.Entity<Transaction>()
+                .HasOne(t => t.Address)
+                .WithMany(a => a.Transactions)
+                .HasForeignKey(t => t.AddressId);
+
+            // Transaction - TransactionDetail relationship
+            modelBuilder.Entity<TransactionDetail>()
+                .HasOne(td => td.Transaction)
+                .WithMany(t => t.TransactionDetails)
+                .HasForeignKey(td => td.transactionFK);
+
+            // AppUser - Address relationship
+            modelBuilder.Entity<Address>()
+                .HasOne(a => a.AppUser)
+                .WithMany(u => u.Addresses)
+                .HasForeignKey(a => a.UserFK);
+
+            // Transaction details fix
+            modelBuilder.Entity<TransactionDetail>()
+                .HasKey(td => td.id);
+
+            modelBuilder.Entity<TransactionDetail>()
+                .Property(td => td.id)
+                .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<TransactionDetail>()
+                .Property(td => td.drugFK)
+                .IsRequired();
+
+            modelBuilder.Entity<TransactionDetail>()
+                .HasOne(td => td.Drug)
+                .WithMany() // Burada ilişkili tablodaki koleksiyonu belirtmeniz gerekir, örneğin Drug sınıfında bir ICollection<TransactionDetail> tanımlanmışsa onu ekleyebilirsiniz.
+                .HasForeignKey(td => td.drugFK)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade); // Gerekirse silme davranışını burada ayarlayabilirsiniz
+
+            modelBuilder.Entity<TransactionDetail>()
+                .Property(td => td.quantity)
+                .IsRequired();
+
+            modelBuilder.Entity<TransactionDetail>()
+                .Property(td => td.price)
+                .IsRequired();
+
+            modelBuilder.Entity<TransactionDetail>()
+                .Property(td => td.created_at)
+                .HasColumnType("datetime2")
+                .IsRequired();
+
+
+            //Transaction fix
+            modelBuilder.Entity<Transaction>()
+                .HasKey(t => t.id);
+
+            modelBuilder.Entity<Transaction>()
+                .Property(t => t.id)
+                .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<Transaction>()
+                .Property(t => t.userFK)
+                .IsRequired();
+
+            modelBuilder.Entity<Transaction>()
+                .HasOne(t => t.AppUser)
+                .WithMany() // Burada ilişkili tablodaki koleksiyonu belirtmeniz gerekir, örneğin AppUser sınıfında bir ICollection<Transaction> tanımlanmışsa onu ekleyebilirsiniz.
+                .HasForeignKey(t => t.userFK)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade); // Gerekirse silme davranışını burada ayarlayabilirsiniz
+
+            modelBuilder.Entity<Transaction>()
+                .Property(t => t.AddressId)
+                .IsRequired();
+
+            modelBuilder.Entity<Transaction>()
+                .HasOne(t => t.Address)
+                .WithMany(a => a.Transactions)
+                .HasForeignKey(t => t.AddressId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Restrict); // Gerekirse silme davranışını burada ayarlayabilirsiniz
+
+            modelBuilder.Entity<Transaction>()
+                .Property(t => t.totalPrice)
+                .IsRequired();
+
+            modelBuilder.Entity<Transaction>()
+                .Property(t => t.created_at)
+                .HasColumnType("datetime2")
+                .IsRequired();
+
+            modelBuilder.Entity<Transaction>()
+                .HasMany(t => t.TransactionDetails)
+                .WithOne(td => td.Transaction)
+                .HasForeignKey(td => td.transactionFK)
+                .OnDelete(DeleteBehavior.Cascade);
+
+                modelBuilder.Entity<Stock>()
+                .HasOne(s => s.Drug)
+                .WithMany()
+                .HasForeignKey(s => s.DrugFK)
+                .IsRequired();
+
+                // Gereksiz DrugNDC sütununu veritabanında göstermeyi iptal et
+                modelBuilder.Entity<Stock>()
+                    .Ignore("DrugNDC");
+
         }
     }
 

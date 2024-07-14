@@ -14,7 +14,9 @@ namespace EntityLayer.Concrete
         public int DrugFK { get; set; }
         public Drug Drug { get; set; }
         public int amount { get; set; }
-        public double price { get; set; }
+        public double buyPrice { get; set; }
+        public double salePrice { get; set; }
+
         public DateTime created_at { get; set; }
 
     }

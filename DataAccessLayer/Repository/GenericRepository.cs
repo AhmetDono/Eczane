@@ -1,5 +1,6 @@
 ﻿using DataAccessLayer.Abstract;
 using DataAccessLayer.Concrete;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,20 @@ namespace DataAccessLayer.Repository
             return c.Set<T>().Find(id);
         }
 
+        public void Insert(T t)
+        {
+            using var c = new Context();
+            c.Add(t);
+            c.SaveChanges();
+        }
+
+        public void Update(T t)
+        {
+            using var c = new Context();
+            c.Update(t);
+            c.SaveChanges();
+        }
+
         public List<T> GetList()
         {
             using var c = new Context();
@@ -44,21 +59,6 @@ namespace DataAccessLayer.Repository
             List<T> lastNItems = allItems.Skip(startIndex).ToList();
             return lastNItems;
         }
-
-        public void Insert(T t)
-        {
-            using var c = new Context();
-            c.Add(t);
-            c.SaveChanges();
-        }
-
-        public void Update(T t)
-        {
-            using var c = new Context();
-            c.Update(t);
-            c.SaveChanges();
-        }
-
 
     }
 }

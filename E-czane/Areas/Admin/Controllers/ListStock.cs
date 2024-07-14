@@ -9,10 +9,10 @@ namespace E_czane.Areas.Admin.Controllers
     [Authorize(Roles = "Admin")]
     public class ListStock : Controller
     {
-        StockManager stockManager = new StockManager(new EfStockDal());
+        StockManager _stockManager = new StockManager(new EfStockDal());
         public IActionResult Index()
         {
-            var values = stockManager.TGetList();
+            var values = _stockManager.TGetList();
             return View(values);
         }
     }

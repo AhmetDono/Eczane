@@ -1,9 +1,11 @@
 ﻿using BusinessLayer.Abstract;
 using DataAccessLayer.Abstract;
+using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -35,12 +37,17 @@ namespace BusinessLayer.Concrete
 
         public List<Stock> TGetLastNItems(int count)
         {
-            throw new NotImplementedException();
+            return _stockDal.GetLastNItems(count);
         }
 
         public List<Stock> TGetList()
         {
             return _stockDal.GetList();
+        }
+
+        public List<Stock> TGetListByFilter(Expression<Func<Stock, bool>> filter)
+        {
+            return _stockDal.GetListByFilter(filter);
         }
 
         public void TUpdate(Stock t)

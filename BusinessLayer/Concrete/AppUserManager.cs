@@ -4,6 +4,7 @@ using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -41,6 +42,11 @@ namespace BusinessLayer.Concrete
         public List<AppUser> TGetList()
         {
             return _appUserDal.GetList();
+        }
+
+        public List<AppUser> TGetListByFilter(Expression<Func<AppUser, bool>> filter)
+        {
+            throw new NotImplementedException();
         }
 
         public void TUpdate(AppUser t)

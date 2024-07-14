@@ -25,28 +25,6 @@ namespace E_czane.Controllers
 
         }
 
-        //[HttpPost]
-        //public IActionResult UpdateCartItem(int id, int quantity)
-        //{
-        //    var cart = HttpContext.Session.GetObjectFromJson<List<CartItem>>("Cart") ?? new List<CartItem>();
-
-        //    var cartItem = cart.FirstOrDefault(c => c.DrugId == id);
-        //    if (cartItem != null)
-        //    {
-        //        if (quantity > 0)
-        //        {
-        //            cartItem.Quantity = quantity;
-        //        }
-        //        else
-        //        {
-        //            cart.Remove(cartItem);
-        //        }
-        //    }
-
-        //    HttpContext.Session.SetObjectAsJson("Cart", cart);
-        //    return RedirectToAction("Index", "Cart");
-        //}
-
         public IActionResult DeleteCartItem(int id)
         {
             var cart = HttpContext.Session.GetObjectFromJson<List<CartItem>>("Cart") ?? new List<CartItem>();

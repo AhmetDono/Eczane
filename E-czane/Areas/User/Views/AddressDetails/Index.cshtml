@@ -1,0 +1,134 @@
+﻿@using EntityLayer.Concrete
+@model EditAddressViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminUserFormLayout.cshtml";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Address Details</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Address Details</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Address Details</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <form
+                            asp-area="User"
+                            asp-controller="AddressDetails"
+                            asp-action="UpdateAddress"
+                            method="post">
+                            <div class="card-body">
+                                <div class="form-group">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Full Name</label>
+                                    <input asp-for="FullName"
+                                           type="text"
+                                           class="form-control"
+                                           placeholder="Supplier Name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Addres Line1</label>
+                                    <input asp-for="AddressLine1"
+                                           type="text"
+                                           class="form-control"
+                                           placeholder="Addres Line1">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Addres Line2</label>
+                                    <input asp-for="AddressLine2"
+                                           type="text"
+                                           class="form-control"
+                                           placeholder="Addres Line2">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">City</label>
+                                    <input asp-for="City"
+                                           type="text"
+                                           class="form-control"
+                                           placeholder="City">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">State</label>
+                                    <input asp-for="State"
+                                           type="text"
+                                           class="form-control"
+                                           placeholder="State">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Postal Code</label>
+                                    <input asp-for="PostalCode"
+                                           type="text"
+                                           class="form-control"
+                                           placeholder="Postal Code">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Country</label>
+                                    <input asp-for="Country"
+                                           type="text"
+                                           class="form-control"
+                                           placeholder="Country">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Phone Number</label>
+                                    <input asp-for="PhoneNumber"
+                                           type="text"
+                                           class="form-control"
+                                           placeholder="Phone Number">
+                                </div>
+                                <input asp-for="id"
+                                       type="text"
+                                       class="form-control"
+                                       hidden>
+                                <input asp-for="UserFK"
+                                       type="text"
+                                       class="form-control"
+                                       hidden>
+                            </div>
+                            <!-- /.card-body -->
+
+                            <div class="card-footer bg-white">
+                                <button type="submit" class="btn btn-primary">Update Address Details</button>
+                                <a 
+                                    asp-area="User"
+                                    asp-controller="AddressDetails"
+                                    asp-action="DeleteAddress"
+                                    asp-route-id="@Model.id"
+                                    type="submit" class="btn btn-danger float-right">Delete Address</a>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!--/.col (left) -->
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+

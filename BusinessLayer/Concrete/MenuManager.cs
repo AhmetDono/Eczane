@@ -1,9 +1,11 @@
 ﻿using BusinessLayer.Abstract;
 using DataAccessLayer.Abstract;
+using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -43,6 +45,10 @@ namespace BusinessLayer.Concrete
             return _menuDal.GetList();
         }
 
+        public List<Menu> TGetListByFilter(Expression<Func<Menu, bool>> filter)
+        {
+            return _menuDal.GetListByFilter(filter);
+        }
         public void TUpdate(Menu t)
         {
             _menuDal.Update(t);

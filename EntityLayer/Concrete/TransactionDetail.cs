@@ -11,12 +11,19 @@ namespace EntityLayer.Concrete
     {
         [Key]
         public int id { get; set; }
+
         public int transactionFK { get; set; }
         public Transaction Transaction { get; set; }
-        public string drugFK { get; set; }
+
+
+        public int drugFK { get; set; }
         public Drug Drug { get; set; }
+
+
         public int quantity { get; set; }
         public int price { get; set; }
+
+
         public DateTime created_at { get; set; }
     }
 }

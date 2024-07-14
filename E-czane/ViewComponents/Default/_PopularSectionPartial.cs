@@ -6,10 +6,10 @@ namespace E_czane.ViewComponents.Default
 {
     public class _PopularSectionPartial : ViewComponent
     {
-        DrugManager _drugManager = new DrugManager(new EfDrugDal());
+        StockManager _stockManager = new StockManager(new EfStockDal());
         public IViewComponentResult Invoke()
         {
-            var popularDrugs = _drugManager.TGetLastNItems(6);
+            var popularDrugs = _stockManager.TGetLastNItems(6);
             return View(popularDrugs);
         }
     }

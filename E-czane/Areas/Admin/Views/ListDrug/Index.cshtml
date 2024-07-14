@@ -48,6 +48,7 @@
                                         <th>Description</th>
                                         <th>Price</th>
                                         <th>Created at</th>
+                                        <th>Buy Drug</th>
                                         <th>More Details</th>
                                     </tr>
                                 </thead>
@@ -64,11 +65,42 @@
                                             <td>@item.price$</td>
                                             <td>@item.created_at</td>
                                             <td>
+                                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-@item.NDC">
+                                                    Buy Drug
+                                                </button>
+                                                <div class="modal fade" id="modal-@item.NDC">
+                                                    <div class="modal-dialog modal-lg">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title">Buy Drug</h4>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <form id="form-@item.NDC" asp-area="Admin" asp-controller="StockC" asp-action="CreateStock" method="post">
+                                                                <div class="modal-body">
+                                                                    <input type="hidden" name="NDC" value="@item.NDC" />
+                                                                    <input type="hidden" name="buyPrice" value="@item.price" />
+                                                                    <input type="hidden" name="salePrice" value="@item.price" />
+                                                                    <h4>Drug Name: <span id="drugName-@item.NDC">@item.drugName</span></h4>
+                                                                    <h4>Drug Buying Price: <span id="buyPrice-@item.NDC">@item.price$</span></h4>
+                                                                    <h4>Drug Amount: <input type="text" name="amount" placeholder="Amount" /></h4>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                                                    <button type="submit" class="btn btn-success">Buy</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
                                                 <a asp-area="Admin"
-                                                asp-controller="DrugDetails"
-                                                asp-action="Index"
-                                                asp-route-id="@item.NDC"
-                                                class="btn btn-info">Details</a>
+                                                   asp-controller="DrugDetails"
+                                                   asp-action="Index"
+                                                   asp-route-id="@item.NDC"
+                                                   class="btn btn-info">Details</a>
                                             </td>
                                         </tr>
                                     }
@@ -83,6 +115,7 @@
                                         <th>Description</th>
                                         <th>Price</th>
                                         <th>Created at</th>
+                                        <th>Buy Drug</th>
                                         <th>More Details</th>
                                     </tr>
                                 </tfoot>
@@ -101,3 +134,19 @@
     <!-- /.content -->
 </div>
 
+<script>
+    $(document).ready(function () {
+        // Modal açıldığında, ilgili ilaç bilgilerini modal içine aktar
+        $('#example1').on('show.bs.modal', '.modal', function (event) {
+            var button = $(event.relatedTarget); // Modal'ı tetikleyen düğme
+            var modal = $(this); // Açılan modal
+
+            // Modal içindeki ilaç bilgilerini güncelle
+            var drugName = button.closest('tr').find('td:eq(1)').text();
+            var buyPrice = button.closest('tr').find('td:eq(6)').text();
+
+            modal.find('#drugName-' + modal.attr('id').split('-')[1]).text(drugName);
+            modal.find('#buyPrice-' + modal.attr('id').split('-')[1]).text(buyPrice);
+        });
+    });
+</script>

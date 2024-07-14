@@ -13,5 +13,7 @@ namespace EntityLayer.Concrete
         public string surname { get; set; }
         public string imageUrl { get; set; }
         public bool gender { get; set; }
+
+        public ICollection<Address> Addresses { get; set; }
     }
 }
